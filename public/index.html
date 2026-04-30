@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="header-content">
+                <h1><i class="fa-solid fa-clock"></i> Time Tracker</h1>
+                <p>Manage your tasks and track your time efficiently</p>
+            </div>
+            <button id="addTaskBtn" class="primary-btn"><i class="fa-solid fa-plus"></i> New Task</button>
+        </header>
+
+        <main>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <i class="fa-solid fa-list-check"></i>
+                    <div class="stat-info">
+                        <h3>Total Tasks</h3>
+                        <p id="totalTasksCount">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                    <div class="stat-info">
+                        <h3>Total Time Logged</h3>
+                        <p id="totalTimeLogged">0h 0m</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tasks-container">
+                <div class="section-header">
+                    <h2>Your Tasks</h2>
+                    <div class="filter-group">
+                        <select id="statusFilter">
+                            <option value="all">All Statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="tasksList" class="tasks-grid">
+                    <!-- Tasks will be populated here via JavaScript -->
+                    <div class="loading-state">Loading tasks...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Task Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Task</h2>
+                <span class="close-btn">&times;</span>
+            </div>
+            <form id="taskForm">
+                <input type="hidden" id="taskId">
+                <div class="form-group">
+                    <label for="taskTitle">Title</label>
+                    <input type="text" id="taskTitle" required placeholder="What are you working on?">
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription" rows="3" placeholder="Add more details..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskTime">Time Spent (minutes)</label>
+                        <input type="number" id="taskTime" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="taskStatus">Status</label>
+                        <select id="taskStatus">
+                            <option value="pending">Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="secondary-btn close-btn-secondary">Cancel</button>
+                    <button type="submit" class="primary-btn">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
