@@ -27,10 +27,16 @@ app.use('/api/tasks', taskRoutes);
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/time-tracker')
   .then(() => {
     console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
-    });
   })
   .catch((err) => {
     console.error('Failed to connect to MongoDB', err);
   });
+
+// Only listen locally, Vercel handles the routing automatically
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
